@@ -76,8 +76,8 @@ jobs:
     - name: Import external feeds
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-    #    git clone "your_github_link" package/"your_folder_name"      
+        git clone https://github.com/xiaorouji/openwrt-passwall package/lienol
+        git clone https://github.com/liuran001/openwrt-packages package/liuran001      
 
     - name: Configuration Customization - Build_x86_64
       env:
@@ -105,3 +105,25 @@ jobs:
       with:
         name: OpenWrt
         path: openwrt/bin
+        
+    - name: argon_new
+      working-directory: ./openwrt
+      run: |
+        cd package/lean
+        rm -rf luci-theme-argon
+        git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+
+    - name: netdata
+      working-directory: ./openwrt
+      run: |
+        cd package/lean
+        rm -rf luci-app-netdata
+        git clone https://github.com/sirpdboy/luci-app-netdata.git
+
+    - name: banner
+      working-directory: ./openwrt
+      run: |
+        cd package/base-files/files/etc
+        sudo rm banner
+        wget https://rav/.githubusercontent.com/lunseil/AutoBuild-LEDE/master/banner
+    
