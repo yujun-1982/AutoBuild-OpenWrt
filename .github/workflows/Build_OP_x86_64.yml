@@ -125,5 +125,19 @@ jobs:
       run: |
         cd package/base-files/files/etc
         sudo rm banner
-        wget https://rav/.githubusercontent.com/lunseil/AutoBuild-LEDE/master/banner
+        wget https://raw.githubusercontent.com/lunseil/AutoBuild-LEDE/master/banner
     
+    - name: shancu
+      working-directory: ./openwrt
+      run: |
+       cd bin/targets/*/*
+       rm -rf packages && mkdir packages
+       find -name "*feeds.buildinfo*" | xargs -i mv -f {} packages
+       find -name "*version.buildinfo*" | xargs -i mv -f {} packages
+       find -name "*sha256sums*" | xargs -i mv -f {} packages
+       find -name "*.manifest*" | xargs -i mv -f {} packages
+       find -name "*.bin*" | xargs -i mv -f {} packages
+       find -name "*.vmdk*" | xargs -i mv -f {} packages
+       find -name "*rootfs.img*" | xargs -i mv -f {} packages
+       find -name "*tar.gz*" | xargs -i mv -f {} packages
+       rm -rf packages
