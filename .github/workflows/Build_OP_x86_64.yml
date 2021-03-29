@@ -77,7 +77,7 @@ jobs:
       working-directory: ./openwrt
       run: |
         git clone https://github.com/xiaorouji/openwrt-passwall package/lienol
-        git clone https://github.com/liuran001/openwrt-packages package/liuran001      
+        git clone https://github.com/liuran001/openwrt-packages package/liuran001
 
     - name: Configuration Customization - Build_x86_64
       env:
